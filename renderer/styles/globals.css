@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply text-white font-bold px-4 py-2 rounded bg-blue-600 hover:bg-blue-500;
+  }
+}
+
+.player-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeInAndOut {
+  animation-name: fadeInAndOut;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
