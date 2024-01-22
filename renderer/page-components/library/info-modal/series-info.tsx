@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react'
 
-import { HiChevronLeft, HiChevronRight, HiMinus, HiPencil, HiPlay, HiPlus } from 'react-icons/hi2'
+import { HiChevronLeft, HiChevronRight, HiMinus, HiPencil, HiPlay, HiPlus, HiXCircle } from 'react-icons/hi2'
 import Dropdown from '../../../components/dropdown'
 import Button from '../../../components/button'
 import AddEpisodeModal from './add-episode-modal'
@@ -72,6 +72,14 @@ export default function SeriesInfo({ item }: Props) {
     })
   }
 
+  const removeEpisode = (episodeIndex) => {
+    const _data = { ...data }
+    _data.seasons[selectedSeason].episodes.splice(episodeIndex, 1)
+    LibraryDb.put({ ..._data }).then(val => {
+      setData({ ..._data, _rev: val.rev })
+    })
+  }
+
   const save = () => {
     setState('saved')
   }
@@ -113,7 +121,7 @@ export default function SeriesInfo({ item }: Props) {
               ]}/>
             }
             {state === 'editing' &&
-              <Button color="green" className="w-auto text-sm px-4" onClick={save}>Save</Button>
+              <Button color="green" className="!w-auto text-sm px-4" onClick={save}>Save</Button>
             }
           </span>
         </p>
@@ -125,15 +133,19 @@ export default function SeriesInfo({ item }: Props) {
             </Button>
           </div>
         }
-        {data.seasons[selectedSeason].episodes.map(episode => (
+        {data.seasons[selectedSeason].episodes.map((episode, index) => (
           <Link href={{
-            pathname: "/video",
+            pathname: state !== 'editing' ? "/video" : "",
             query: {
               videoPath: episode.videoPath
             }
           }}>
             <div className="bg-neutral-800 p-2 rounded-lg px-3 mb-1 flex items-center cursor-pointer transition hover:bg-neutral-700">
-              <HiPlay className="mr-4" />
+              {state === 'editing' ?
+                <HiXCircle className="mr-3" color="red" size={20} onClick={() => removeEpisode(index)}/>
+              :
+                <HiPlay className="mr-4" />
+              }
               <span className="font-medium">{episode.name}</span>
               <span className="ml-auto font-light text-sm">{episode.duration}</span>
             </div>
