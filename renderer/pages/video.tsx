@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { HiChevronLeft } from 'react-icons/hi2'
 import ReactPlayer from 'react-player'
-import { LibraryDb } from '../page-components/library/library'
+import { LibraryDb } from './library'
 
 export default function Video() {
   const { query } = useRouter()

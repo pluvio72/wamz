@@ -4,7 +4,7 @@ import { HiChevronLeft, HiChevronRight, HiMinus, HiPencil, HiPlay, HiPlus, HiXCi
 import Dropdown from '../../../components/dropdown'
 import Button from '../../../components/button'
 import AddEpisodeModal from './add-episode-modal'
-import { LibraryDb } from '../library'
+import { LibraryDb } from '../../../pages/library'
 import { EpisodeInfo } from '../../../types'
 import Link from 'next/link'
 import clsx from 'clsx'

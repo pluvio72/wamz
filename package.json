@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@reduxjs/toolkit": "^2.1.0",
     "clsx": "^2.1.0",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",

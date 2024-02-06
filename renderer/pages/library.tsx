@@ -1,12 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import PouchDB from 'pouchdb'
 export const LibraryDb = new PouchDB('library')
 
 import { HiOutlinePlus } from "react-icons/hi2"
-import AddLibraryItemModal from './add-library-item-modal';
-import Link from 'next/link';
-import LibraryItemInfoModal from './info-modal/library-item-info-modal';
+import AddLibraryItemModal from '../page-components/library/add-library-item-modal';
+import LibraryItemInfoModal from '../page-components/library/info-modal/library-item-info-modal';
 
 export default function Library() {
   const [showAddModal, setShowAddModal] = useState(false);

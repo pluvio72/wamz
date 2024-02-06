@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import Navbar from '../components/navbar'
-import Library from '../page-components/library/library'
+import Library from './library'
+import Channels from './channels'
 
 export default function HomePage() {
   const [selectedNavItem, setSelectedNavItem] = useState(0)
@@ -9,7 +10,7 @@ export default function HomePage() {
   const renderSelected = useMemo(() => {
     switch (selectedNavItem) {
       case 0:
-        return <Library/>
+        return <Channels/>
       case 1:
         return <Library/>
     }

@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ModalProps } from '../../components/modal'
 import { Dialog, Transition } from '@headlessui/react'
-import { HiPencil } from "react-icons/hi2"
 
 import TextInput from '../../components/text-input'
 import Select from '../../components/select'
 import Button from '../../components/button'
-import { LibraryDb } from './library'
+import { LibraryDb } from '../../pages/library'
+import ImageSelect from '../../components/image-select';
 
 export default function AddLibraryItemModal({ open, setOpen }: Props) {
   const [type, setType] = useState<typeof TYPES[keyof typeof TYPES]>('Series')
@@ -81,18 +81,9 @@ export default function AddLibraryItemModal({ open, setOpen }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all">
                 <div className="bg-black p-4">
-                  {image ?
-                    <img src={image} className="h-[525px] w-[350px] m-0 mb-1 rounded-lg"/>
-                    :
-                    <div className="mb-1 cursor-pointer hover:bg-neutral-600 transition h-[525px] w-[350px] relative bg-neutral-500 grid items-center justify-center rounded-lg" onClick={chooseThumbnail}>
-                      <span className="animate-pulse">Click to upload thumbnail</span>
-                      <div className="absolute top-4 end-4">
-                        <HiPencil />
-                      </div>
-                    </div>
-                  }
+                  <ImageSelect image={image} openImageSelect={chooseThumbnail} height={525} width={350} />
                   <div className="w-[350px] mb-3">
                     <TextInput placeholder="Name" value={name} onChange={(newVal) => setName(newVal)} parentClassName='mt-3 mb-2'/>
                     <Select options={Object.keys(TYPES)} setSelected={(newVal) => setType(newVal)} selected={type}/>

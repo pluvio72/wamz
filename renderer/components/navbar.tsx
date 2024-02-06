@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import { LuLibrary } from "react-icons/lu"
 import { MdPlaylistAdd } from "react-icons/md"
+import { HiTv } from "react-icons/hi2"
 
 interface Props {
   selected: Number
@@ -34,8 +35,8 @@ export default function Navbar({ selected, setSelected }: Props) {
 
 const ITEMS = [
   {
-    text: "Playlists",
-    icon: <MdPlaylistAdd size={20} />
+    text: "TV",
+    icon: <HiTv size={20} />
   },
   {
     text: "Library",
