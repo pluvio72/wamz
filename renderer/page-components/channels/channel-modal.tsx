@@ -1,16 +1,16 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
-import Modal, { ModalProps } from '../../../components/modal'
+import Modal, { ModalProps } from '../../components/modal'
 import { v4 as uuid4 } from 'uuid'
-import Button from '../../../components/button'
-import TextInput from '../../../components/text-input'
-import { LibraryDb } from '../../../pages/library'
+import Button from '../../components/button'
+import TextInput from '../../components/text-input'
+import { LibraryDb } from '../../pages/library'
 import clsx from 'clsx'
-import ImageSelect from '../../../components/image-select'
+import ImageSelect from '../../components/image-select'
 import PouchDb from 'pouchdb'
 
 export const ChannelDb = new PouchDb('channel')
 
-export default function AddChannelModal({ open, setOpen }: Props) {
+export default function ChannelModal({ open, channelInfo, setOpen }: Props) {
   const [items, setItems] = useState<any[]>([])
   const [image, setImage] = useState<any>()
   const [name, setName] = useState('')
@@ -54,16 +54,26 @@ export default function AddChannelModal({ open, setOpen }: Props) {
 
   const saveChannel = () => {
     if (name && image && items.length > 0) {
+      let data = {
+        name,
+        image,
+        items
+      }
+
+      if (channelInfo) {
+        data = {
+          ...data,
+          ...channelInfo
+        }
+      } else {
+        data['_id'] = uuid4()
+      }
+
       setName('')
       setImage(null)
       setItems([])
       setOpen(false)
-      ChannelDb.put({
-        _id: uuid4(),
-        name,
-        image,
-        items
-      })
+      ChannelDb.put(data)
     }
   }
 
@@ -97,5 +107,11 @@ export default function AddChannelModal({ open, setOpen }: Props) {
 }
 
 interface Props extends ModalProps {
-
+  channelInfo?: {
+    _id: string
+    _rev: string
+    name: string
+    image: string
+    items: any[]
+  }
 }

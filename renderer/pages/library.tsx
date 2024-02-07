@@ -6,6 +6,7 @@ export const LibraryDb = new PouchDB('library')
 import { HiOutlinePlus } from "react-icons/hi2"
 import AddLibraryItemModal from '../page-components/library/add-library-item-modal';
 import LibraryItemInfoModal from '../page-components/library/info-modal/library-item-info-modal';
+import Tile from '../components/tile';
 
 export default function Library() {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -38,9 +39,12 @@ export default function Library() {
         <HiOutlinePlus size={60} />
       </div>
       {library.length > 0 && library.map(item => (
-        <div className="h-[255px] w-[170px] text-center hover:opacity-50 transition cursor-pointer" onClick={() => openInfoModal(item)}>
-          <img src={item.doc.image} className="rounded-lg mb-1" />
-        </div>
+        <Tile
+          width={170}
+          height={250}
+          image={item.doc.image}
+          onClick={() => openInfoModal(item)}
+        />
       ))}
       <AddLibraryItemModal open={showAddModal} setOpen={setShowAddModal} />
       <LibraryItemInfoModal item={selectedItem} open={showInfoModal} setOpen={setShowInfoModal}/>
