@@ -1,3 +1,8 @@
+interface DBAttrs {
+  _id: string
+  _rev: string
+}
+
 export interface LibraryItem {
   name: string
   type: LibraryItemType
@@ -7,6 +12,7 @@ export interface LibraryItem {
 export interface Movie extends LibraryItem {
   videoPath: string
 }
+export interface DBMovie extends Movie, DBAttrs {}
 
 export interface Series extends LibraryItem {
   seasons: Array<{
@@ -19,6 +25,8 @@ export interface Series extends LibraryItem {
     }>
   }>
 }
+export type Season = Series['seasons'][number]
+export interface DBSeries extends Series, DBAttrs {}
 
 export type EpisodeInfo = Series['seasons'][number]['episodes'][number]
 
@@ -28,3 +36,9 @@ export type PDBDocument<T> = T & {
 }
 
 export type LibraryItemType = "series" | "movie";
+
+export type Channel = {
+  name: string
+  image: string
+  items: Array<Series>
+}

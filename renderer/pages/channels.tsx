@@ -2,9 +2,9 @@ import React, { MouseEvent, useLayoutEffect, useState } from "react";
 import AddChannelModal, {
   ChannelDb,
 } from "../page-components/channels/channel-modal";
-import { HiPencil } from "react-icons/hi2";
 import ChannelContextMenu from "../page-components/channels/channel-context-menu";
 import Tile from "../components/tile";
+import { itemQueued } from '../redux/slices/queueSlice'
 
 export default function Channels() {
   const [channels, setChannels] = useState([]);
@@ -33,7 +33,10 @@ export default function Channels() {
 
   const closeChannelOptions = () => {
     setShowChannelOptions(false)
-    setChannelContext(undefined)
+  }
+
+  const playChannel = () => {
+    
   }
 
   const contextActions = {
@@ -54,6 +57,7 @@ export default function Channels() {
         <Tile
           image={channel.doc.image}
           onContextMenu={(e) => openChannelOptions(e, channel)}
+          onClick={playChannel}
         />
       ))}
       {showChannelOptions && (

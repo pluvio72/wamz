@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Modal, { ModalProps } from '../../components/modal'
 import { v4 as uuid4 } from 'uuid'
 import Button from '../../components/button'
@@ -18,6 +18,15 @@ export default function ChannelModal({ open, channelInfo, setOpen }: Props) {
   const [selectedItems, setSelectedItems] = useState([])
 
   const thumbnailFileInput = useRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (channelInfo) {
+      console.log("Setting info:", channelInfo.name)
+      setName(channelInfo.name)
+      setImage(channelInfo.image)
+      // setSelectedItems(channelInfo.items)
+    }
+  }, [channelInfo])
 
   useLayoutEffect(() => {
     LibraryDb.allDocs({ include_docs: true }).then(docs => {
