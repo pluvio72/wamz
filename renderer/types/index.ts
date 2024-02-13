@@ -26,6 +26,7 @@ export interface Series extends LibraryItem {
   }>
 }
 export type Season = Series['seasons'][number]
+export type Episode = Series['seasons'][number]['episodes'][number]
 export interface DBSeries extends Series, DBAttrs {}
 
 export type EpisodeInfo = Series['seasons'][number]['episodes'][number]

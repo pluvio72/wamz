@@ -16,7 +16,7 @@ export default function Navbar({ selected, setSelected }: Props) {
 
     for (let i = 0; i < ITEMS.length; i++) {
       content.push(
-        <div className={clsx("flex items-center justiify-center p-4 cursor-pointer hover:text-gray-500 transition", selected === i && "text-gray-400")} onClick={() => setSelected(i)}>
+        <div className={clsx("flex items-center justiify-center p-4 cursor-pointer hover:text-gray-400 transition", selected === i && "text-gray-400")} onClick={() => setSelected(i)}>
           {ITEMS[i].icon}
           <span className="mx-2 font-bold">{ITEMS[i].text}</span>
         </div>

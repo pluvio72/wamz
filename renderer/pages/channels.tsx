@@ -4,7 +4,6 @@ import AddChannelModal, {
 } from "../page-components/channels/channel-modal";
 import ChannelContextMenu from "../page-components/channels/channel-context-menu";
 import Tile from "../components/tile";
-import { itemQueued } from '../redux/slices/queueSlice'
 
 export default function Channels() {
   const [channels, setChannels] = useState([]);

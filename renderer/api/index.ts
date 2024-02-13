@@ -7,7 +7,7 @@ export const getChannelQueue = (dispatch: AppDispatch, channel: Channel) => {
 }
 
 export const getSeriesQueue = (dispatch: AppDispatch, season: Season, episode: number) => {
-  if (season.episodes.length - 1 <= episode) {
-    dispatch(queueItems(season.episodes.slice(episode)))
+  if (season.episodes.length - 1 >= episode) {
+    dispatch(queueItems({ items: season.episodes.slice(episode) }))
   }
 }
